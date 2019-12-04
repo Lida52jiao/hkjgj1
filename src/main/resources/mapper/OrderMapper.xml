@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yj.bj.mapper.OrderMapper">
+
+    <resultMap id="list" type="Order">
+        <id column="id" property="id" />
+        <result column="merChantId" property="merChantId" />
+        <result column="merName" property="merName" />
+        <result column="merMp" property="merMp" />
+        <result column="agentId" property="agentId" />
+        <result column="payType" property="payType" />
+        <result column="merType" property="merType" />
+        <result column="rank" property="rank" />
+        <result column="creatDate" property="creatDate" />
+        <result column="amount" property="amount" />
+        <result column="state" property="state" />
+        <result column="orderNo" property="orderNo" />
+        <result column="share" property="share" />
+        <result column="send" property="send" />
+    </resultMap>
+
+    <select id="getList" resultMap="list">
+        SELECT * FROM t_mp_order
+        <where>
+            1=1
+            <if test="merChantId != '' and merChantId != null">
+                AND merChantId = #{merChantId}
+            </if>
+            <if test="merName != '' and merName != null">
+                AND merName = #{merName}
+            </if>
+            <if test="merMp != '' and merMp != null">
+                AND merMp = #{merMp}
+            </if>
+            <if test="agentId != '' and agentId != null">
+                AND agentId = #{agentId}
+            </if>
+            <if test="payType != '' and payType != null">
+                AND payType = #{payType}
+            </if>
+            <if test="merType != '' and merType != null">
+                AND merType = #{merType}
+            </if>
+            <if test="rank != '' and rank != null">
+                AND rank = #{rank}
+            </if>
+            <if test="startTime != '' and startTime != null">
+                AND creatDate &gt;= #{startTime}
+            </if>
+            <if test="finshTime != '' and finshTime != null">
+                AND creatDate &lt;= #{finshTime}
+            </if>
+            <if test="amount != '' and amount != null">
+                AND amount = #{amount}
+            </if>
+            <if test="state != '' and state != null">
+                AND state = #{state}
+            </if>
+            <if test="orderNo != '' and orderNo != null">
+                AND orderNo = #{orderNo}
+            </if>
+            <if test="share != '' and share != null">
+                AND share = #{share}
+            </if>
+            <if test="send != '' and send != null">
+                AND send = #{send}
+            </if>
+        </where>
+    </select>
+</mapper>

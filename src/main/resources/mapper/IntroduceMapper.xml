@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yj.bj.mapper.IntroduceMapper">
+	
+	<select id="get" resultType="Introduce">
+	select id,imgURL,titles,content,creatDate,forwardURL,remarks from t_mp_introduce order by creatDate desc limit #{sindex},#{eindex} 
+	</select>
+	
+	<select id="selectCode" resultType="int">
+	select count(*) from t_mp_introduce 
+	</select>
+</mapper>

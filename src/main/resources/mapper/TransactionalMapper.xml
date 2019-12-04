@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yj.bj.mapper.TransactionalMapper">
+
+    <resultMap id="list" type="Transactional">
+        <id column="id" property="id" />
+        <result column="createTime" property="createTime" />
+        <result column="module" property="module" />
+        <result column="type" property="type" />
+        <result column="merchantId" property="merchantId" />
+        <result column="orderMerchantId" property="orderMerchantId" />
+        <result column="orderMerchantName" property="orderMerchantName" />
+        <result column="orderMerchantPhone" property="orderMerchantPhone" />
+        <result column="agentId" property="agentId" />
+        <result column="institutionId" property="institutionId" />
+        <result column="appId" property="appId" />
+        <result column="orderNo" property="orderNo" />
+        <result column="rate" property="rate" />
+        <result column="level" property="level" />
+        <result column="fee" property="fee" />
+        <result column="amount" property="amount" />
+        <result column="remarks" property="remarks" />
+    </resultMap>
+
+    <select id="getList" resultMap="list">
+        SELECT * FROM t_mp_transactional
+        <where>
+            1=1
+            <if test="startTime != '' and startTime != null">
+                AND createTime &gt;= #{startTime}
+            </if>
+            <if test="finshTime != '' and finshTime != null">
+                AND createTime &lt;= #{finshTime}
+            </if>
+            <!--<if test="module != '' and module != null">-->
+                <!--AND module = #{module}-->
+            <!--</if>-->
+            <!--<if test="type != '' and type != null">-->
+                <!--AND type = #{type}-->
+            <!--</if>-->
+            <if test="merchantId != '' and merchantId != null">
+                AND merchantId = #{merchantId}
+            </if>
+            <if test="orderMerchantId != '' and orderMerchantId != null">
+                AND orderMerchantId = #{orderMerchantId}
+            </if>
+            <if test="orderMerchantName != '' and orderMerchantName != null">
+                AND orderMerchantName = #{orderMerchantName}
+            </if>
+            <!--<if test="orderMerchantPhone != '' and orderMerchantPhone != null">-->
+                <!--AND orderMerchantPhone = #{orderMerchantPhone}-->
+            <!--</if>-->
+            <if test="agentId != '' and agentId != null">
+                AND agentId = #{agentId}
+            </if>
+            <!--<if test="institutionId != '' and institutionId != null">-->
+                <!--AND institutionId = #{institutionId}-->
+            <!--</if>-->
+            <!--<if test="appId != '' and appId != null">-->
+                <!--AND appId = #{appId}-->
+            <!--</if>-->
+            <if test="orderNo != '' and orderNo != null">
+                AND orderNo = #{orderNo}
+            </if>
+            <!--<if test="rate != '' and rate != null">-->
+                <!--AND rate = #{rate}-->
+            <!--</if>-->
+            <if test="level != '' and level != null">
+                AND level = #{level}
+            </if>
+            <!--<if test="fee != '' and fee != null">-->
+                <!--AND fee = #{fee}-->
+            <!--</if>-->
+            <!--<if test="amount != '' and amount != null">-->
+                <!--AND amount = #{amount}-->
+            <!--</if>-->
+            <!--<if test="remarks != '' and remarks != null">-->
+                <!--AND remarks = #{remarks}-->
+            <!--</if>-->
+        </where>
+    </select>
+
+    <select id="countT1" resultType="com.yj.bj.entity.CountT1Entity">
+        SELECT DATE(createTime) createTime,merchantId,SUM(fee) fee FROM t_mp_transactional
+        WHERE createTime &gt;= STR_TO_DATE(#{startTime}, '%Y-%m-%d %H:%i')
+        AND createTime &lt;= STR_TO_DATE(#{endTime}, '%Y-%m-%d %H:%i')
+        GROUP BY merchantId
+    </select>
+</mapper>
